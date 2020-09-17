@@ -1,2 +1,2 @@
-
-export {default as AppShell} from './appshell';
+export { default as ProductivityAppShell } from './appshell/ProductivityAppShell';
+export { default as DemoMuiTheme } from './appthemes/DemoMuiTheme';

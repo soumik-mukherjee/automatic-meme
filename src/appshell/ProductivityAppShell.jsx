@@ -13,7 +13,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-const drawerWidth = 240;
+const drawerWidth = 60;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,13 +28,25 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    background: theme.palette.primary.dark
   },
   drawerContainer: {
     overflow: 'auto',
+    
+  },
+  itemPrimary: {
+    color: theme.palette.primary.contrastText,
+  },
+  itemIconRoot: {
+    minWidth: 0,
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+  },
+  drawerDividerLight: {
+    backgroundColor: theme.palette.primary.contrastText,
+    height: theme.spacing(0.1),
   },
 }));
 
@@ -47,7 +59,7 @@ export default function ClippedDrawer() {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-            SharpMinor
+            Demo Application
           </Typography>
         </Toolbar>
       </AppBar>
@@ -63,17 +75,15 @@ export default function ClippedDrawer() {
           <List>
             {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
               <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemIcon classes= { { root: classes.itemIconRoot } }>{index % 2 === 0 ? <InboxIcon color="primary" classes={{ colorPrimary: classes.itemPrimary }}/> : <MailIcon color="primary" classes={{ colorPrimary: classes.itemPrimary }}/>}</ListItemIcon>
               </ListItem>
             ))}
           </List>
-          <Divider />
+          <Divider light={true} classes={{ light: classes.drawerDividerLight }} />
           <List>
             {['All mail', 'Trash', 'Spam'].map((text, index) => (
               <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemIcon classes= { { root: classes.itemIconRoot } }>{index % 2 === 0 ? <InboxIcon color="primary" classes={{ colorPrimary: classes.itemPrimary }} /> : <MailIcon color="primary" classes={{ colorPrimary: classes.itemPrimary }} />}</ListItemIcon>
               </ListItem>
             ))}
           </List>
